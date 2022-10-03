@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class UserRole
+    public enum UserRole
     {
-        public int RoleId { get; private set; }
+        Admin,
+        Patient
     }
 }
