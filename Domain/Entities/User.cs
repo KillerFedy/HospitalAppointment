@@ -14,5 +14,15 @@ namespace Domain.Entities
         public string PhoneNumber { get; private set; }
         public string Initials { get; private set; }
         public UserRole Role { get; private set; }
+
+        public User(int id, string login, string password, string phonenumber, string init, UserRole role)
+        {
+            UserId = id;
+            Login = login;
+            Password = password;
+            PhoneNumber = phonenumber;
+            Initials = init;
+            Role = role;
+        }
     }
 }

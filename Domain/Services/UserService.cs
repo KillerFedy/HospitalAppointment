@@ -20,19 +20,19 @@ namespace Domain.Services
         public Result<User> GetUserByLogin(string login)
         {
             if (string.IsNullOrEmpty(login))
-                return Result.Fail<User>("Логин не был указан");
+                return Result.Fail<User>("Empty login");
 
             var user = _repository.GetByLogin(login);
 
-            return user is null ? Result.Fail<User>("Пользователь не найден") : Result.Ok(user);
+            return user is null ? Result.Fail<User>("User not found") : Result.Ok(user);
         }
 
         public Result<User> CreateUser(User user)
         {
             if (string.IsNullOrEmpty(user.Login))
-                return Result.Fail<User>("Логин не был указан");
+                return Result.Fail<User>("Empty login");
             if (string.IsNullOrEmpty(user.Password))
-                return Result.Fail<User>("Пароль не был указан");
+                return Result.Fail<User>("Empty password");
 
             return Result.Ok<User>(user);
         }
@@ -40,9 +40,9 @@ namespace Domain.Services
         public Result CheckUser(string login, string password)
         {
             if (string.IsNullOrEmpty(login))
-                return Result.Fail("Логин не был указан");
+                return Result.Fail("Empty password");
             if (string.IsNullOrEmpty(password))
-                return Result.Fail("Пароль не был указан");
+                return Result.Fail("Empty password");
 
             return Result.Ok();
         }
