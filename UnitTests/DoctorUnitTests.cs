@@ -28,7 +28,7 @@ namespace UnitTests
             _doctorRepositoryMock.Setup(repository => repository.FindDoctor(It.IsAny<int>()))
                 .Returns(() => null);
 
-            var res = _doctorService.GetDoctor(1);
+            var res = _doctorService.FindDoctor(1);
 
             Assert.True(res.IsFailure);
             Assert.Equal("Doctor not found", res.Error);
@@ -41,7 +41,7 @@ namespace UnitTests
             _doctorRepositoryMock.Setup(repository => repository.FindDoctor(It.IsAny<int>()))
                 .Returns(() => new Doctor(id, "", default));
 
-            var res = _doctorService.GetDoctor(id);
+            var res = _doctorService.FindDoctor(id);
 
             Assert.True(res.Success);
             Assert.Equal(id, res.Value.DoctorId);
@@ -53,7 +53,7 @@ namespace UnitTests
             _doctorRepositoryMock.Setup(repository => repository.FindDoctor(It.IsAny<Specialization>()))
                 .Returns(() => null);
 
-            var res = _doctorService.FindDoctor(new Specialization(default, "Name"));
+            var res = _doctorService.FindDoctor(new Specialization(default, "SpecName"));
 
             Assert.True(res.IsFailure);
             Assert.Equal("Can not get list of doctors", res.Error);
@@ -74,7 +74,7 @@ namespace UnitTests
             _doctorRepositoryMock.Setup(repository => repository.FindDoctor(It.IsAny<Specialization>()))
                 .Returns(() => new List<Doctor>());
 
-            var res = _doctorService.FindDoctor(new Specialization(default, "Amongus"));
+            var res = _doctorService.FindDoctor(new Specialization(default, "ABoba"));
 
             Assert.True(res.Success);
             Assert.Equal(string.Empty, res.Error);
@@ -121,7 +121,7 @@ namespace UnitTests
         {
             int id = 1;
             _doctorRepositoryMock.Setup(repository => repository.FindDoctor(id))
-                .Returns(() => new Doctor(id, "Amongus", default));
+                .Returns(() => new Doctor(id, "ABoba", default));
 
             _doctorRepositoryMock.Setup(repository => repository.DeleteDoctor(It.IsAny<int>()))
                 .Returns(() => false);
@@ -137,7 +137,7 @@ namespace UnitTests
         {
             int id = 1;
             _doctorRepositoryMock.Setup(repository => repository.FindDoctor(id))
-                .Returns(() => new Doctor(id, "Amongus", default));
+                .Returns(() => new Doctor(id, "ABoba", default));
             _doctorRepositoryMock.Setup(repository => repository.DeleteDoctor(It.IsAny<int>()))
                 .Returns(() => true);
 
@@ -159,7 +159,7 @@ namespace UnitTests
         [Fact]
         public void CreateDoctorNullSpecialization_ShouldFail()
         {
-            var res = _doctorService.CreateDoctor(new Doctor(default, "Amongus", default));
+            var res = _doctorService.CreateDoctor(new Doctor(default, "ABoba", default));
 
             Assert.True(res.IsFailure);
             Assert.Equal("No specialization", res.Error);
@@ -169,7 +169,7 @@ namespace UnitTests
         public void CreateDoctor_ShouldOk()
         {
             var res = _doctorService.CreateDoctor(
-                new Doctor(default, "Amongus", new Specialization(10, "Spec")));
+                new Doctor(default, "Aboba", new Specialization(40, "Specialization")));
 
             Assert.True(res.Success);
             Assert.Equal(string.Empty, res.Error);

@@ -18,8 +18,6 @@ namespace Domain.Interfaces
 
         public Doctor FindDoctor(int id);
 
-        public Doctor FindDoctor(Specialization specialization);
-
-        public List<Doctor> GetDoctorsOfSpecialization(Specialization specialization);
+        public List<Doctor> FindDoctor(Specialization specialization);
     }
 }

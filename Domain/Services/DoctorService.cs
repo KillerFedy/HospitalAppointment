@@ -28,7 +28,7 @@ namespace Domain.Services
             if (string.IsNullOrEmpty(specialization.SpecializationName))
                 return Result.Fail<List<Doctor>>("Empty specialization");
 
-            List<Doctor>? doctors = _doctorRepository.GetDoctorsOfSpecialization(specialization);
+            List<Doctor>? doctors = _doctorRepository.FindDoctor(specialization);
 
             return doctors is null ? Result.Fail<List<Doctor>>("Can not get list of doctors") : Result.Ok(doctors);
         }
