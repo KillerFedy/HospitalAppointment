@@ -97,7 +97,7 @@ namespace UnitTests
         {
             Specialization specialization = new Specialization(default, " ");
             _receptionRepositoryMock.Setup(repository => repository.GetFreeAppointmentDateList(specialization))
-                        .Returns(() => new List<DateOnly>());
+                        .Returns(() => new List<DateTime>());
 
             var res = _receptionService.GetFreeAppointmentDateList(specialization);
 

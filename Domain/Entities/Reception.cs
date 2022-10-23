@@ -8,7 +8,6 @@ namespace Domain.Entities
 {
     public class Reception
     {
-        public DateOnly Date { get; private set; }
         public DateTime StartTime { get; private set; }
         public DateTime EndTime { get; private set; }
         public int UserId { get; private set; }

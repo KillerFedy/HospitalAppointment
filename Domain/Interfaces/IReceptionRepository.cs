@@ -12,7 +12,7 @@ namespace Domain.Interfaces
 
         public Reception SaveAppointment(DateTime startTime, DateTime endTime);
         public Reception SaveAppointment(DateTime startTime, DateTime endTime, Doctor doctor);
-        public List<DateOnly> GetFreeAppointmentDateList(Specialization specialization);
+        public List<DateTime> GetFreeAppointmentDateList(Specialization specialization);
         public bool IsReserveReception(DateTime startTime, DateTime endTime);
     }
 }

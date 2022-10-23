@@ -33,7 +33,7 @@ namespace Domain.Services
         }
         public Result<List<DateOnly>> GetFreeAppointmentDateList(Specialization specialization)
         {
-            List<DateOnly> dates = _receptionRepository.GetFreeAppointmentDateList(specialization);
+            List<DateTime> dates = _receptionRepository.GetFreeAppointmentDateList(specialization);
 
             return dates is null ? Result.Fail<List<DateOnly>>("Can not get date list") : Result.Ok(dates);
         }
