@@ -9,6 +9,12 @@ namespace Domain.Entities
     public class Specialization
     {
         public int SpecializationId { get; private set; }
-        public int SpecializationName { get; private set; }
+        public string SpecializationName { get; private set; }
+
+        public Specialization(int id, string name)
+        {
+            SpecializationId = id;
+            SpecializationName = name;
+        }
     }
 }
