@@ -10,8 +10,9 @@ namespace Domain.Interfaces
     public interface IReceptionRepository
     {
 
-        public Reception SaveAppointment(DateOnly date);
-        public Reception SaveAppointment(DateOnly date, Doctor doctor);
+        public Reception SaveAppointment(DateTime startTime, DateTime endTime);
+        public Reception SaveAppointment(DateTime startTime, DateTime endTime, Doctor doctor);
         public List<DateOnly> GetFreeAppointmentDateList(Specialization specialization);
+        public bool IsReserveReception(DateTime startTime, DateTime endTime);
     }
 }

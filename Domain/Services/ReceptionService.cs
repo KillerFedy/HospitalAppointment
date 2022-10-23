@@ -17,18 +17,18 @@ namespace Domain.Services
             _receptionRepository = receptionRepository;
         }
 
-        public Result<Reception> SaveAppointment(DateOnly date)
+        public Result<Reception> SaveAppointment(DateTime start, DateTime end)
         {
-            Reception reception = _receptionRepository.SaveAppointment(date);
+            Reception reception = _receptionRepository.SaveAppointment(start, end);
 
-            return reception is null ? Result.Fail<Reception>("Can not save appointment") : Result.Ok(reception);
+            return (reception is null && _receptionRepository.IsReserveReception(start, end)) ? Result.Fail<Reception>("Can not save appointment") : Result.Ok(reception);
 
         }
-        public Result<Reception> SaveAppointment(DateOnly date, Doctor doctor)
+        public Result<Reception> SaveAppointment(DateTime start, DateTime end, Doctor doctor)
         {
-            Reception reception = _receptionRepository.SaveAppointment(date, doctor);
+            Reception reception = _receptionRepository.SaveAppointment(start, end, doctor);
 
-            return reception is null ? Result.Fail<Reception>("Can not save appointment") : Result.Ok(reception);
+            return (reception is null && _receptionRepository.IsReserveReception(start, end)) ? Result.Fail<Reception>("Can not save appointment") : Result.Ok(reception);
 
         }
         public Result<List<DateOnly>> GetFreeAppointmentDateList(Specialization specialization)

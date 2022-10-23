@@ -25,11 +25,12 @@ namespace UnitTests
         [Fact]
         public void SaveAppointmentToAnyDoctor_ShouldFail()
         {
-            DateOnly date = new DateOnly(1, 1, 1);
-            _receptionRepositoryMock.Setup(repository => repository.SaveAppointment(date))
+            DateTime start = new DateTime();
+            DateTime end = new DateTime();
+            _receptionRepositoryMock.Setup(repository => repository.SaveAppointment(start, end))
                         .Returns(() => null);
 
-            var res = _receptionService.SaveAppointment(date);
+            var res = _receptionService.SaveAppointment(start, end);
 
             Assert.True(res.IsFailure);
             Assert.Equal("Can not save appointment", res.Error);
@@ -38,11 +39,12 @@ namespace UnitTests
         [Fact]
         public void SaveAppointmentToAnyDoctor_ShouldOk()
         {
-            DateOnly date = new DateOnly(1, 1, 1);
-            _receptionRepositoryMock.Setup(repository => repository.SaveAppointment(date))
-                        .Returns(() => new Reception(date, new DateTime(1, 1, 1), new DateTime(1, 1, 1), default, default));
+            DateTime start = new DateTime();
+            DateTime end = new DateTime();
+            _receptionRepositoryMock.Setup(repository => repository.SaveAppointment(start, end))
+                        .Returns(() => new Reception(new DateTime(1, 1, 1), new DateTime(1, 1, 1), default, default));
 
-            var res = _receptionService.SaveAppointment(date);
+            var res = _receptionService.SaveAppointment(start, end);
 
             Assert.True(res.Success);
             Assert.Equal(string.Empty, res.Error);
@@ -50,12 +52,13 @@ namespace UnitTests
 
         public void SaveAppointmentToSpecificDoctor_ShouldFail()
         {
-            DateOnly date = new DateOnly(1, 1, 1);
+            DateTime start = new DateTime();
+            DateTime end = new DateTime();
             Doctor doctor = new Doctor(default, "", default);
-            _receptionRepositoryMock.Setup(repository => repository.SaveAppointment(date, doctor))
+            _receptionRepositoryMock.Setup(repository => repository.SaveAppointment(start, end, doctor))
                         .Returns(() => null);
 
-            var res = _receptionService.SaveAppointment(date, doctor);
+            var res = _receptionService.SaveAppointment(start, end, doctor);
 
             Assert.True(res.IsFailure);
             Assert.Equal("Can not save appointment", res.Error);
@@ -64,12 +67,13 @@ namespace UnitTests
         [Fact]
         public void SaveAppointmentToSpecificDoctor_ShouldOk()
         {
-            DateOnly date = new DateOnly(1, 1, 1);
+            DateTime start = new DateTime();
+            DateTime end = new DateTime();
             Doctor doctor = new Doctor(default, "", default);
-            _receptionRepositoryMock.Setup(repository => repository.SaveAppointment(date, doctor))
-                        .Returns(() => new Reception(date, new DateTime(1, 1, 1), new DateTime(1, 1, 1), default, default));
+            _receptionRepositoryMock.Setup(repository => repository.SaveAppointment(start, end, doctor))
+                        .Returns(() => new Reception(new DateTime(1, 1, 1), new DateTime(1, 1, 1), default, default));
 
-            var res = _receptionService.SaveAppointment(date, doctor);
+            var res = _receptionService.SaveAppointment(start, end, doctor);
 
             Assert.True(res.Success);
             Assert.Equal(string.Empty, res.Error);

@@ -14,9 +14,8 @@ namespace Domain.Entities
         public int UserId { get; private set; }
         public int DoctorId { get; private set; }
 
-        public Reception(DateOnly date, DateTime start, DateTime end, int userid, int doctorid)
+        public Reception(DateTime start, DateTime end, int userid, int doctorid)
         {
-            Date = date;
             StartTime = start;
             EndTime = end;
             UserId = userid;
