@@ -31,11 +31,11 @@ namespace Domain.Services
             return (reception is null && _receptionRepository.IsReserveReception(start, end)) ? Result.Fail<Reception>("Can not save appointment") : Result.Ok(reception);
 
         }
-        public Result<List<DateOnly>> GetFreeAppointmentDateList(Specialization specialization)
+        public Result<List<DateTime>> GetFreeAppointmentDateList(Specialization specialization)
         {
             List<DateTime> dates = _receptionRepository.GetFreeAppointmentDateList(specialization);
 
-            return dates is null ? Result.Fail<List<DateOnly>>("Can not get date list") : Result.Ok(dates);
+            return dates is null ? Result.Fail<List<DateTime>>("Can not get date list") : Result.Ok(dates);
         }
     }
 }
