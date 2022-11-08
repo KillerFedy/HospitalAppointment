@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hospital", "Hospital\Hospit
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{135E5DC4-6E1A-4C56-96BB-95AB82A3482F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{D95316F6-8F49-4375-B080-EA7D4648A9F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{D95316F6-8F49-4375-B080-EA7D4648A9F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBase", "DataBase\DataBase.csproj", "{8961A050-D400-412D-B009-E3E7EF9CEB15}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{D95316F6-8F49-4375-B080-EA7D4648A9F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D95316F6-8F49-4375-B080-EA7D4648A9F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D95316F6-8F49-4375-B080-EA7D4648A9F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8961A050-D400-412D-B009-E3E7EF9CEB15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8961A050-D400-412D-B009-E3E7EF9CEB15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8961A050-D400-412D-B009-E3E7EF9CEB15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8961A050-D400-412D-B009-E3E7EF9CEB15}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
