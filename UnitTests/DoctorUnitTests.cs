@@ -169,7 +169,7 @@ namespace UnitTests
         public void CreateDoctor_ShouldOk()
         {
             var res = _doctorService.CreateDoctor(
-                new Doctor(default, "Aboba", new Specialization(40, "Specialization")));
+                new Doctor(default, "Aboba", 10));
 
             Assert.True(res.Success);
             Assert.Equal(string.Empty, res.Error);
