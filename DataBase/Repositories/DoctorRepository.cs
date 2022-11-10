@@ -19,12 +19,16 @@ namespace DataBase.Repositories
 
         public Doctor CreateDoctor(Doctor doctor)
         {
-            throw new NotImplementedException();
+            _context.AddAsync(doctor);
+            _context.SaveChangesAsync();
+            return doctor;
         }
 
         public bool DeleteDoctor(int doctorid)
         {
-            throw new NotImplementedException();
+            var doctor = _context.Doctors.FirstOrDefault(doc => doc.DoctorId == doctorid);
+            _context.Remove(doctor);
+            return true;
         }
 
         public Doctor FindDoctor(int id)
@@ -32,14 +36,14 @@ namespace DataBase.Repositories
             throw new NotImplementedException();
         }
 
-        public List<Doctor> FindDoctor(Specialization specialization)
+        public IEnumerable<Doctor> FindDoctor(Specialization specialization)
         {
             throw new NotImplementedException();
         }
 
-        public List<Doctor> GetAllDoctors()
+        public IEnumerable<Doctor> GetAllDoctors()
         {
-            throw new NotImplementedException();
+            return (IEnumerable<Doctor>)_context.Doctors.ToList();
         }
     }
 }
