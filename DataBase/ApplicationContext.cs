@@ -18,13 +18,10 @@ namespace DataBase
         public DbSet<SpecializationModel> Specializations { get; set; }
         public DbSet<ReceptionModel> Receptions { get; set; }
 
-        public ApplicationContext(DbContextOptions<ApplicationContext> contextOptions)
+        public ApplicationContext(DbContextOptions contextOptions) : base(contextOptions) { }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            Database.EnsureCreated();
-        }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseNpgsql("");
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

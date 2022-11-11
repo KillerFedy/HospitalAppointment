@@ -53,7 +53,7 @@ namespace UnitTests
             _doctorRepositoryMock.Setup(repository => repository.FindDoctors(45))
                 .Returns(() => null);
 
-            var res = _doctorService.FindDoctor(new Specialization(default, "SpecName"));
+            var res = _doctorService.FindDoctor(1);
 
             Assert.True(res.IsFailure);
             Assert.Equal("Can not get list of doctors", res.Error);
@@ -62,7 +62,7 @@ namespace UnitTests
         [Fact]
         public void GetDoctorsBySpecNullSpec_ShouldFail()
         {
-            var res = _doctorService.FindDoctor(new Specialization(default, ""));
+            var res = _doctorService.FindDoctor(1);
 
             Assert.True(res.IsFailure);
             Assert.Equal("Empty specialization", res.Error);
@@ -74,7 +74,7 @@ namespace UnitTests
             _doctorRepositoryMock.Setup(repository => repository.FindDoctors(5))
                 .Returns(() => new List<Doctor>());
 
-            var res = _doctorService.FindDoctor(new Specialization(default, "ABoba"));
+            var res = _doctorService.FindDoctor(1);
 
             Assert.True(res.Success);
             Assert.Equal(string.Empty, res.Error);
