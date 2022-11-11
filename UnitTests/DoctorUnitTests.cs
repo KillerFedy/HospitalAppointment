@@ -50,7 +50,7 @@ namespace UnitTests
         [Fact]
         public void GetDoctorsBySpec_ShouldFail()
         {
-            _doctorRepositoryMock.Setup(repository => repository.FindDoctor(It.IsAny<Specialization>()))
+            _doctorRepositoryMock.Setup(repository => repository.FindDoctors(45))
                 .Returns(() => null);
 
             var res = _doctorService.FindDoctor(new Specialization(default, "SpecName"));
@@ -71,7 +71,7 @@ namespace UnitTests
         [Fact]
         public void GetDoctorsBySpec_ShouldOk()
         {
-            _doctorRepositoryMock.Setup(repository => repository.FindDoctor(It.IsAny<Specialization>()))
+            _doctorRepositoryMock.Setup(repository => repository.FindDoctors(5))
                 .Returns(() => new List<Doctor>());
 
             var res = _doctorService.FindDoctor(new Specialization(default, "ABoba"));

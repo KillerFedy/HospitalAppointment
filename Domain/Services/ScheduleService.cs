@@ -17,7 +17,7 @@ namespace Domain.Services
             _scheduleRepository = scheduleRepository;
         }
 
-        public Result<Schedule> GetDoctorScheduleByDate(Doctor doctor, DateOnly date)
+        public Result<Schedule> GetDoctorScheduleByDate(Doctor doctor, DateTime date)
         {
             Schedule schedule = _scheduleRepository.GetDoctorScheduleByDate(doctor, date);
 

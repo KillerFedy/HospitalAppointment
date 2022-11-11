@@ -18,6 +18,6 @@ namespace Domain.Interfaces
 
         public Doctor FindDoctor(int id);
 
-        public IEnumerable<Doctor> FindDoctor(Specialization specialization);
+        public IEnumerable<Doctor> FindDoctors(int specializationId);
     }
 }

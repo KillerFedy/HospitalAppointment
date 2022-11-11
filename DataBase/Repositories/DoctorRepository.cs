@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using DataBase.Converters;
+using Domain.Entities;
 using Domain.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -33,12 +34,14 @@ namespace DataBase.Repositories
 
         public Doctor FindDoctor(int id)
         {
-            throw new NotImplementedException();
+            var doctor = _context.Doctors.FirstOrDefault(doc => doc.DoctorId == id);
+            return doctor.ToDomain();
         }
 
-        public IEnumerable<Doctor> FindDoctor(Specialization specialization)
+        public IEnumerable<Doctor> FindDoctors(int specializationId)
         {
-            throw new NotImplementedException();
+            var doctors =_context.Doctors.Where(doc => doc.SpecializationModelId == specializationId);
+            return (IEnumerable<Doctor>)doctors;
         }
 
         public IEnumerable<Doctor> GetAllDoctors()

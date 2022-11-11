@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using DataBase.Converters;
+using Domain.Entities;
 using Domain.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -18,17 +19,22 @@ namespace DataBase.Repositories
         }
         public Schedule AddSchedule(Schedule schedule)
         {
-            throw new NotImplementedException();
+            _context.AddAsync(schedule);
+            _context.SaveChanges();
+            return schedule;
         }
 
         public Schedule EditSchedule(Schedule schedule)
         {
-            throw new NotImplementedException();
+            _context.Remove(schedule);
+            _context.SaveChanges();
+            return schedule;
         }
 
-        public Schedule GetDoctorScheduleByDate(Doctor doctor, DateOnly date)
+        public Schedule GetDoctorScheduleByDate(Doctor doctor, DateTime date)
         {
-            throw new NotImplementedException();
+            var schedule = _context.Schedules.FirstOrDefault(s => (s.DoctorId == doctor.DoctorId || s.StartWorkTime == date));
+            return schedule.ToDomain();
         }
     }
 }
