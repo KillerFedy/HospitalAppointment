@@ -82,11 +82,11 @@ namespace UnitTests
         [Fact]
         public void GetFreeAppointmentDateList_ShouldFail()
         {
-            Specialization specialization = new Specialization(default, " ");
-            _receptionRepositoryMock.Setup(repository => repository.GetFreeAppointmentDateList(specialization))
+            int specializationId = 40;
+            _receptionRepositoryMock.Setup(repository => repository.GetFreeAppointmentDateList(specializationId))
                         .Returns(() => null);
 
-            var res = _receptionService.GetFreeAppointmentDateList(specialization);
+            var res = _receptionService.GetFreeAppointmentDateList(specializationId);
 
             Assert.True(res.IsFailure);
             Assert.Equal("Can not get date list", res.Error);
@@ -95,11 +95,11 @@ namespace UnitTests
         [Fact]
         public void GetFreeAppointmentDateList_ShouldOk()
         {
-            Specialization specialization = new Specialization(default, " ");
-            _receptionRepositoryMock.Setup(repository => repository.GetFreeAppointmentDateList(specialization))
+            int specializationId = 40;
+            _receptionRepositoryMock.Setup(repository => repository.GetFreeAppointmentDateList(specializationId))
                         .Returns(() => new List<DateTime>());
 
-            var res = _receptionService.GetFreeAppointmentDateList(specialization);
+            var res = _receptionService.GetFreeAppointmentDateList(specializationId);
 
             Assert.True(res.Success);
             Assert.Equal(string.Empty, res.Error);

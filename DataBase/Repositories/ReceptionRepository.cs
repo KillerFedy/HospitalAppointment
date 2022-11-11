@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using DataBase.Models;
+using Domain.Entities;
 using Domain.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -17,14 +18,32 @@ namespace DataBase.Repositories
             _context = context;
         }
 
-        public List<DateTime> GetFreeAppointmentDateList(Specialization specialization)
+        public List<DateTime> GetFreeAppointmentDateList(int specializationId)
         {
-            throw new NotImplementedException();
+            List<DateTime> dateTimes = new List<DateTime>();
+            var doctor = _context.Doctors.FirstOrDefault(doc => doc.SpecializationModelId == specializationId);
+            var appointmentForSpecialization = _context.Receptions.ToList();
+            for (int i = 0; i < appointmentForSpecialization.Count; ++i)
+            {
+                if (_context.Receptions.FirstOrDefault(a => doctor.DoctorId == appointmentForSpecialization[i].DoctorId) != null)
+                {
+                    dateTimes.Add(appointmentForSpecialization[i].StartTime);
+                }
+            }
+            return dateTimes;
         }
 
         public bool IsReserveReception(DateTime startTime, DateTime endTime)
         {
             throw new NotImplementedException();
+        }
+
+        public Reception SaveAppointment(DateTime startTime, DateTime endTime, Doctor doctor, User user)
+        {
+            Reception reception = new Reception(startTime, endTime, user.UserId, doctor.DoctorId);
+            ReceptionModel model = new ReceptionModel(reception.StartTime, reception.EndTime, reception.UserId, reception.DoctorId);
+            _context.Receptions.Add(model);
+            return reception;
         }
 
         public Reception SaveAppointment(DateTime startTime, DateTime endTime)

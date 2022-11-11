@@ -1,4 +1,5 @@
 ﻿using DataBase.Converters;
+using DataBase.Models;
 using Domain.Entities;
 using Domain.Interfaces;
 using System;
@@ -19,14 +20,16 @@ namespace DataBase.Repositories
         }
         public Schedule AddSchedule(Schedule schedule)
         {
-            _context.AddAsync(schedule);
+            ScheduleModel model = new ScheduleModel(schedule.DoctorId, schedule.StartWorkTime, schedule.EndWorkTime);
+            _context.Schedules.Add(model);
             _context.SaveChanges();
             return schedule;
         }
 
         public Schedule EditSchedule(Schedule schedule)
         {
-            _context.Remove(schedule);
+            ScheduleModel model = new ScheduleModel(schedule.DoctorId, schedule.StartWorkTime, schedule.EndWorkTime);
+            _context.Remove(model);
             _context.SaveChanges();
             return schedule;
         }

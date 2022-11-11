@@ -1,4 +1,5 @@
 ﻿using DataBase.Converters;
+using DataBase.Models;
 using Domain.Entities;
 using Domain.Interfaces;
 using System;
@@ -26,7 +27,8 @@ namespace DataBase.Repositories
 
         public User CreateUser(User user)
         {
-            _context.AddAsync(user);
+            UserModel model = new UserModel(user.UserId, user.Login, user.Password, user.PhoneNumber, user.Initials, user.Role);
+            _context.Users.Add(model);
             _context.SaveChangesAsync();
             return user;
         }

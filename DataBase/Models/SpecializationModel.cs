@@ -10,5 +10,11 @@ namespace DataBase.Models
     {
         public int SpecializationId { get; private set; }
         public string SpecializationName { get; private set; }
+
+        public SpecializationModel(int id, string name)
+        {
+            SpecializationId = id;
+            SpecializationName = name;
+        }
     }
 }

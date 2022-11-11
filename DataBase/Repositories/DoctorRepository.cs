@@ -1,4 +1,5 @@
 ﻿using DataBase.Converters;
+using DataBase.Models;
 using Domain.Entities;
 using Domain.Interfaces;
 using System;
@@ -20,7 +21,8 @@ namespace DataBase.Repositories
 
         public Doctor CreateDoctor(Doctor doctor)
         {
-            _context.AddAsync(doctor);
+            DoctorModel model = new DoctorModel(doctor.DoctorId, doctor.Initials, doctor.SpecializationId);
+            _context.Doctors.Add(model);
             _context.SaveChangesAsync();
             return doctor;
         }
@@ -46,7 +48,7 @@ namespace DataBase.Repositories
 
         public IEnumerable<Doctor> GetAllDoctors()
         {
-            return (IEnumerable<Doctor>)_context.Doctors.ToList();
+            return (IEnumerable<Doctor>)_context.Doctors;
         }
     }
 }
