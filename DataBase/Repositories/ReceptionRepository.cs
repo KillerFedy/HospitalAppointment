@@ -35,7 +35,15 @@ namespace DataBase.Repositories
 
         public bool IsReserveReception(DateTime startTime, DateTime endTime)
         {
-            throw new NotImplementedException();
+            var reception = _context.Receptions.FirstOrDefault(res => (res.StartTime == startTime && res.EndTime == endTime));
+            if(reception != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public Reception SaveAppointment(DateTime startTime, DateTime endTime, Doctor doctor, User user)
