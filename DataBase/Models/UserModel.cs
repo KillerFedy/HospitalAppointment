@@ -9,20 +9,11 @@ namespace DataBase.Models
 {
     public class UserModel
     {
-        public int UserId { get; private set; }
-        public string Login { get; private set; }
-        public string Password { get; private set; }
-        public string PhoneNumber { get; private set; }
-        public string Initials { get; private set; }
-        public UserRole Role { get; private set; }
-        public UserModel(int id, string login, string password, string phonenumber, string init, UserRole role)
-        {
-            UserId = id;
-            Login = login;
-            Password = password;
-            PhoneNumber = phonenumber;
-            Initials = init;
-            Role = role;
-        }
+        public int Id { get; set; }
+        public string Login { get; set; }
+        public string Password { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Initials { get; set; }
+        public UserRole Role { get; set; }
     }
 }

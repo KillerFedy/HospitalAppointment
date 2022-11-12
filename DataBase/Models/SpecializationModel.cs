@@ -8,13 +8,7 @@ namespace DataBase.Models
 {
     public class SpecializationModel
     {
-        public int SpecializationId { get; private set; }
-        public string SpecializationName { get; private set; }
-
-        public SpecializationModel(int id, string name)
-        {
-            SpecializationId = id;
-            SpecializationName = name;
-        }
+        public int Id { get; set; }
+        public string SpecializationName { get; set; }
     }
 }

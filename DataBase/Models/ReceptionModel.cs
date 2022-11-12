@@ -8,18 +8,11 @@ namespace DataBase.Models
 {
     public class ReceptionModel
     {
-        public DateTime StartTime { get; private set; }
-        public DateTime EndTime { get; private set; }
-        public int UserId { get; private set; }
-        public int DoctorId { get; private set; }
-
-        public ReceptionModel(DateTime start, DateTime end, int userid, int doctorid)
-        {
-            StartTime = start;
-            EndTime = end;
-            UserId = userid;
-            DoctorId = doctorid;
-        }
+        public int Id { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+        public int UserId { get; set; }
+        public int DoctorId { get; set; }
     }
 
 }

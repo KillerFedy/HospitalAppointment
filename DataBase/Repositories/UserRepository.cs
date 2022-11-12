@@ -27,7 +27,15 @@ namespace DataBase.Repositories
 
         public User CreateUser(User user)
         {
-            UserModel model = new UserModel(user.UserId, user.Login, user.Password, user.PhoneNumber, user.Initials, user.Role);
+            UserModel model = new UserModel
+            {
+                Id = user.UserId,
+                Initials = user.Initials,
+                Login = user.Login,
+                Password = user.Password,
+                PhoneNumber = user.PhoneNumber,
+                Role = user.Role
+            };
             _context.Users.Add(model);
             _context.SaveChangesAsync();
             return user;

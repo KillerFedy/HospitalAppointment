@@ -12,7 +12,7 @@ namespace DataBase.Converters
     {
         public static Doctor? ToDomain(this DoctorModel model)
         {
-            return new Doctor(model.DoctorId, model.Initials, model.SpecializationModelId);
+            return new Doctor(model.Id, model.Initials, model.SpecializationModelId);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace DataBase.Converters
     {
         public static User? ToDomain(this UserModel model)
         {
-            return new User(model.UserId, model.Login, model.Password, model.PhoneNumber, model.Initials, model.Role);
+            return new User(model.Id, model.Login, model.Password, model.PhoneNumber, model.Initials, model.Role);
         }
     }
 }

@@ -21,7 +21,13 @@ namespace DataBase.Repositories
 
         public Doctor CreateDoctor(Doctor doctor)
         {
-            DoctorModel model = new DoctorModel(doctor.DoctorId, doctor.Initials, doctor.SpecializationId);
+            DoctorModel model = new DoctorModel
+            {
+                Id = doctor.DoctorId,
+                Initials = doctor.Initials,
+                SpecializationModelId = doctor.SpecializationId
+            };
+            
             _context.Doctors.Add(model);
             _context.SaveChangesAsync();
             return doctor;
@@ -29,14 +35,14 @@ namespace DataBase.Repositories
 
         public bool DeleteDoctor(int doctorid)
         {
-            var doctor = _context.Doctors.FirstOrDefault(doc => doc.DoctorId == doctorid);
+            var doctor = _context.Doctors.FirstOrDefault(doc => doc.Id == doctorid);
             _context.Remove(doctor);
             return true;
         }
 
         public Doctor FindDoctor(int id)
         {
-            var doctor = _context.Doctors.FirstOrDefault(doc => doc.DoctorId == id);
+            var doctor = _context.Doctors.FirstOrDefault(doc => doc.Id == id);
             return doctor.ToDomain();
         }
 

@@ -20,7 +20,12 @@ namespace DataBase.Repositories
         }
         public Schedule AddSchedule(Schedule schedule)
         {
-            ScheduleModel model = new ScheduleModel(schedule.DoctorId, schedule.StartWorkTime, schedule.EndWorkTime);
+            ScheduleModel model = new ScheduleModel
+            {
+                Id = schedule.DoctorId,
+                StartWorkTime = schedule.StartWorkTime,
+                EndWorkTime = schedule.EndWorkTime
+            };
             _context.Schedules.Add(model);
             _context.SaveChanges();
             return schedule;
@@ -28,7 +33,12 @@ namespace DataBase.Repositories
 
         public Schedule EditSchedule(Schedule schedule)
         {
-            ScheduleModel model = new ScheduleModel(schedule.DoctorId, schedule.StartWorkTime, schedule.EndWorkTime);
+            ScheduleModel model = new ScheduleModel
+            {
+                Id = schedule.DoctorId,
+                StartWorkTime = schedule.StartWorkTime,
+                EndWorkTime = schedule.EndWorkTime
+            };
             _context.Remove(model);
             _context.SaveChanges();
             return schedule;

@@ -25,7 +25,7 @@ namespace DataBase.Repositories
             var appointmentForSpecialization = _context.Receptions.ToList();
             for (int i = 0; i < appointmentForSpecialization.Count; ++i)
             {
-                if (_context.Receptions.FirstOrDefault(a => doctor.DoctorId == appointmentForSpecialization[i].DoctorId) != null)
+                if (_context.Receptions.FirstOrDefault(a => doctor.Id == appointmentForSpecialization[i].DoctorId) != null)
                 {
                     dateTimes.Add(appointmentForSpecialization[i].StartTime);
                 }
@@ -49,7 +49,13 @@ namespace DataBase.Repositories
         public Reception SaveAppointment(DateTime startTime, DateTime endTime, Doctor doctor, User user)
         {
             Reception reception = new Reception(startTime, endTime, user.UserId, doctor.DoctorId);
-            ReceptionModel model = new ReceptionModel(reception.StartTime, reception.EndTime, reception.UserId, reception.DoctorId);
+            ReceptionModel model = new ReceptionModel
+            {
+                StartTime = reception.StartTime,
+                EndTime = reception.EndTime,
+                UserId = user.UserId,
+                DoctorId = doctor.DoctorId
+            };
             _context.Receptions.Add(model);
             return reception;
         }
