@@ -20,7 +20,7 @@ namespace UnitTests
         {
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationContext>();
             optionsBuilder.UseNpgsql(
-                $"Host=localhost;Port=5432;Database=yuy;Username=KillerFedy;Password=281103@QWas");
+                $"Host=localhost;Port=5432;Database=yuy;Username=postgres;Password=ZuevPostgres");
             _optionsBuilder = optionsBuilder;
         }
 
