@@ -23,18 +23,9 @@ namespace Domain.Services
 
             return doctor is null ? Result.Fail<Doctor>("Doctor not found") : Result.Ok(doctor);
         }
-        public Result<List<Doctor>> FindDoctor(Specialization specialization)
-        {
-            if (string.IsNullOrEmpty(specialization.SpecializationName))
-                return Result.Fail<List<Doctor>>("Empty specialization");
-
-            List<Doctor>? doctors = _doctorRepository.FindDoctor(specialization);
-
-            return doctors is null ? Result.Fail<List<Doctor>>("Can not get list of doctors") : Result.Ok(doctors);
-        }
         public Result<List<Doctor>> GetAllDoctors()
         {
-            List<Doctor>? doctors = _doctorRepository.GetAllDoctors();
+            List<Doctor>? doctors = (List<Doctor>)_doctorRepository.GetAllDoctors();
 
             return doctors is null ? Result.Fail<List<Doctor>>("Can not get list of doctors") : Result.Ok(doctors);
         }
@@ -53,7 +44,7 @@ namespace Domain.Services
         {
             if (string.IsNullOrEmpty(doctor.Initials))
                 return Result.Fail<Doctor>("Empty doctor name");
-            if (doctor.Specialization is null)
+            if (doctor.SpecializationId == -1)
                 return Result.Fail<Doctor>("No specialization");
 
             return Result.Ok(doctor);

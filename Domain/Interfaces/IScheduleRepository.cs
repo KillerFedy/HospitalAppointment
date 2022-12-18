@@ -9,7 +9,7 @@ namespace Domain.Interfaces
 {
     public interface IScheduleRepository
     {
-        public Schedule GetDoctorScheduleByDate(Doctor doctor, DateOnly date);
+        public Schedule GetDoctorScheduleByDate(Doctor doctor, DateTime date);
         public Schedule AddSchedule(Schedule schedule);
         public Schedule EditSchedule(Schedule schedule);
     }

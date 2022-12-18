@@ -10,13 +10,13 @@ namespace Domain.Entities
     {
         public int DoctorId { get; private set; }
         public string Initials { get; private set; }
-        public Specialization Specialization { get; private set; }
+        public int SpecializationId { get; private set; }
 
-        public Doctor(int id, string init, Specialization spec)
+        public Doctor(int id, string init, int spec)
         {
             DoctorId = id;
             Initials = init;
-            Specialization = spec;
+            SpecializationId = spec;
         }
     }
 }

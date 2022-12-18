@@ -14,10 +14,10 @@ namespace Domain.Interfaces
 
         public bool DeleteDoctor(int doctorid);
 
-        public List<Doctor> GetAllDoctors();
+        public IEnumerable<Doctor> GetAllDoctors();
 
         public Doctor FindDoctor(int id);
 
-        public List<Doctor> FindDoctor(Specialization specialization);
+        public IEnumerable<Doctor> FindDoctors(int specializationId);
     }
 }

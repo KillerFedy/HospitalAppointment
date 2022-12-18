@@ -26,7 +26,7 @@ namespace UnitTests
         public void GetDoctorScheduleByDate_ShouldFail()
         {
             Doctor doctor = new Doctor(default, " ", default);
-            DateOnly date = new DateOnly(1, 1, 1);
+            DateTime date = new DateTime(1, 1, 1);
 
             _scheduleServiceMock.Setup(repository => repository.GetDoctorScheduleByDate(doctor, date))
                 .Returns(() => null);
@@ -41,7 +41,7 @@ namespace UnitTests
         public void GetDoctorScheduleByDate_ShouldOk()
         {
             Doctor doctor = new Doctor(default, " ", default);
-            DateOnly date = new DateOnly(1, 1, 1);
+            DateTime date = new DateTime(1, 1, 1);
 
             _scheduleServiceMock.Setup(repository => repository.GetDoctorScheduleByDate(doctor, date))
                 .Returns(() => new Schedule(default, new DateTime(1, 1, 1), new DateTime(1, 1, 1)));
