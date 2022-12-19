@@ -58,7 +58,7 @@ namespace Hospital.Controllers
                 return Problem(statusCode: 404, detail: "Не удалось удалить доктора");
             }
             var res = _service.DeleteDoctor(id);
-            return Ok(res);
+            return Ok(res.Value);
         }
 
         public ActionResult<DoctorSearchView> CreateDoctor(DoctorSearchView doctorSearchView)
