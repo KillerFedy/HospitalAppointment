@@ -41,7 +41,7 @@ namespace Hospital.Controllers
             });
         }
 
-        [HttpGet("createuser")]
+        [HttpPost("createuser")]
         public ActionResult<UserSearchView> CreateUser(UserSearchView userView)
         {
             if (string.IsNullOrEmpty(userView.Login))

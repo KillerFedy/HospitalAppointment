@@ -32,7 +32,7 @@ namespace Hospital.Controllers
             return Ok(view);
         }
 
-        [HttpGet("addschedule")]
+        [HttpPost("addschedule")]
         public ActionResult<ScheduleSearchView> AddSchedule(ScheduleSearchView model)
         {
             Schedule schedule = new Schedule(model.DoctorId, model.StartWorkTime, model.EndWorkTime);
@@ -44,7 +44,7 @@ namespace Hospital.Controllers
             return Ok(model);
         }
 
-        [HttpGet("editschedule")]
+        [HttpPost("editschedule")]
         public ActionResult<ScheduleSearchView> EditSchedule(ScheduleSearchView model)
         {
             Schedule schedule = new Schedule(model.DoctorId, model.StartWorkTime, model.EndWorkTime);

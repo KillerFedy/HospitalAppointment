@@ -54,7 +54,7 @@ namespace Hospital.Controllers
             return Ok(doctorSearchViews);
         }
 
-        [HttpGet("deletedoctor")]
+        [HttpPost("deletedoctor")]
         public ActionResult<bool> DeleteDoctor(int id)
         {
             var doctor = _service.FindDoctor(id);
@@ -66,7 +66,7 @@ namespace Hospital.Controllers
             return Ok(res.Value);
         }
 
-        [HttpGet("createdoctor")]
+        [HttpPost("createdoctor")]
         public ActionResult<DoctorSearchView> CreateDoctor(DoctorSearchView doctorSearchView)
         {
             if(doctorSearchView.Initials == string.Empty)
