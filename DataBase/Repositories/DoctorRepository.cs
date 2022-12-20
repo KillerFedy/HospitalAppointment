@@ -47,15 +47,21 @@ namespace DataBase.Repositories
             return doctor?.ToDomain();
         }
 
-        public IEnumerable<Doctor> FindDoctors(int specializationId)
+        public List<Doctor> FindDoctors(int specializationId)
         {
             var doctors =_context.Doctors.Where(doc => doc.SpecializationModelId == specializationId);
-            return (IEnumerable<Doctor>)doctors;
+            return (List<Doctor>)doctors;
         }
 
-        public IEnumerable<Doctor> GetAllDoctors()
+        public List<Doctor> GetAllDoctors()
         {
-            return (IEnumerable<Doctor>)_context.Doctors;
+            var listModels = _context.Doctors.ToList();
+            List<Doctor> list = new List<Doctor>();
+            foreach (var item in listModels)
+            {
+                list.Add(item.ToDomain());
+            }
+            return list;
         }
     }
 }
