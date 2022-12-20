@@ -22,7 +22,7 @@ namespace DataBase.Repositories
         {
             ScheduleModel model = new ScheduleModel
             {
-                Id = schedule.DoctorId,
+                DoctorId = schedule.DoctorId,
                 StartWorkTime = schedule.StartWorkTime,
                 EndWorkTime = schedule.EndWorkTime
             };
@@ -35,7 +35,7 @@ namespace DataBase.Repositories
         {
             ScheduleModel model = new ScheduleModel
             {
-                Id = schedule.DoctorId,
+                DoctorId = schedule.DoctorId,
                 StartWorkTime = schedule.StartWorkTime,
                 EndWorkTime = schedule.EndWorkTime
             };
@@ -46,8 +46,8 @@ namespace DataBase.Repositories
 
         public Schedule GetDoctorScheduleByDate(Doctor doctor, DateTime date)
         {
-            var schedule = _context.Schedules.FirstOrDefault(s => (s.DoctorId == doctor.DoctorId || s.StartWorkTime == date));
-            return schedule.ToDomain();
+            var schedule = _context.Schedules.FirstOrDefault(s => (s.DoctorId == doctor.DoctorId && s.StartWorkTime == date));
+            return schedule?.ToDomain();
         }
     }
 }

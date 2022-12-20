@@ -16,7 +16,7 @@ namespace Hospital.Controllers
         }
 
         [HttpGet("getschedule")]
-        public ActionResult<ScheduleSearchView> GetDoctorScheduleByDate(DoctorSearchView model, DateTime date) 
+        public ActionResult<ScheduleSearchView> GetDoctorScheduleByDate([FromQuery]DoctorSearchView model, [FromQuery]DateTime date) 
         {
             Doctor doc = new Doctor(model.DoctorId, model.Initials, model.SpecializationId);
             var res = _service.GetDoctorScheduleByDate(doc, date);
