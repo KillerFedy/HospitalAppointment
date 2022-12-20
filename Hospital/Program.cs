@@ -1,6 +1,27 @@
+using DataBase;
+using DataBase.Repositories;
+using Domain.Interfaces;
+using Domain.Services;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+builder.Services.AddDbContext<ApplicationContext>(options => 
+options.UseNpgsql($"Host=localhost;Port=5432;Database=yuy;Username=postgres;Password=ZuevPostgres"));
+
+builder.Services.AddTransient<IUserRepository, UserRepository>();
+builder.Services.AddTransient<UserService>();
+
+builder.Services.AddTransient<IDoctorRepository, DoctorRepository>();
+builder.Services.AddTransient<DoctorService>();
+
+builder.Services.AddTransient<IReceptionRepository, ReceptionRepository>();
+builder.Services.AddTransient<ReceptionService>();
+
+builder.Services.AddTransient<IScheduleRepository, ScheduleRepository>();
+builder.Services.AddTransient<ScheduleService>();
 
 // Add services to the container.
 builder.Services.AddRazorPages();
