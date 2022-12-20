@@ -34,6 +34,8 @@ namespace Domain.Services
             if (string.IsNullOrEmpty(user.Password))
                 return Result.Fail<User>("Empty password");
 
+            _repository.CreateUser(user);
+
             return Result.Ok<User>(user);
         }
 
@@ -44,6 +46,11 @@ namespace Domain.Services
             if (string.IsNullOrEmpty(password))
                 return Result.Fail("Empty password");
 
+            bool a = _repository.CheckUser(login, password);
+            if(!a)
+            {
+                return Result.Fail("No User");
+            }
             return Result.Ok();
         }
     }

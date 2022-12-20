@@ -29,7 +29,7 @@ namespace DataBase.Repositories
             };
             
             _context.Doctors.Add(model);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
             return doctor;
         }
 
@@ -37,13 +37,14 @@ namespace DataBase.Repositories
         {
             var doctor = _context.Doctors.FirstOrDefault(doc => doc.Id == doctorid);
             _context.Remove(doctor);
+            _context.SaveChanges();
             return true;
         }
 
         public Doctor FindDoctor(int id)
         {
             var doctor = _context.Doctors.FirstOrDefault(doc => doc.Id == id);
-            return doctor.ToDomain();
+            return doctor?.ToDomain();
         }
 
         public IEnumerable<Doctor> FindDoctors(int specializationId)

@@ -22,6 +22,10 @@ namespace DataBase.Repositories
         public bool CheckUser(string login, string password)
         {
             var user = _context.Users.FirstOrDefault(u => (u.Login == login && u.Password == password));
+            if(user == null)
+            {
+                return false;
+            }
             return true;
         }
 
@@ -37,14 +41,14 @@ namespace DataBase.Repositories
                 Role = user.Role
             };
             _context.Users.Add(model);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
             return user;
         }
 
         public User GetByLogin(string login)
         {
             var user = _context.Users.FirstOrDefault(u => u.Login == login);
-            return user.ToDomain();
+            return user?.ToDomain();
         }
     }
 }
