@@ -5,7 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Hospital.Controllers
 {
-    public class UserController : Controller
+    [ApiController]
+    [Route("user")]
+    public class UserController : ControllerBase
     {
         private readonly UserService _service;
 
@@ -14,6 +16,7 @@ namespace Hospital.Controllers
             _service = service;
         }
 
+        [HttpGet("userlogin")]
         public ActionResult<UserSearchView> GetUserByLogin(string login)
         {
             if (string.IsNullOrEmpty(login))
@@ -38,6 +41,7 @@ namespace Hospital.Controllers
             });
         }
 
+        [HttpGet("createuser")]
         public ActionResult<UserSearchView> CreateUser(UserSearchView userView)
         {
             if (string.IsNullOrEmpty(userView.Login))
@@ -55,6 +59,7 @@ namespace Hospital.Controllers
             return Ok(userView);
         }
 
+        [HttpGet("checkuser")]
         public ActionResult CheckUser(string login, string password)
         {
             if (string.IsNullOrEmpty(login))

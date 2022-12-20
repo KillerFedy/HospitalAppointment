@@ -6,7 +6,9 @@ using System.Reflection.Metadata.Ecma335;
 
 namespace Hospital.Controllers
 {
-    public class DoctorController : Controller
+    [ApiController]
+    [Route("doctor")]
+    public class DoctorController : ControllerBase
     {
         private readonly DoctorService _service;
         public DoctorController(DoctorService service)
@@ -14,6 +16,7 @@ namespace Hospital.Controllers
             _service = service;
         }
 
+        [HttpGet("finddoctor")]
         public ActionResult<DoctorSearchView> FindDoctor(int id)
         {
             var doctor = _service.FindDoctor(id);
@@ -27,9 +30,10 @@ namespace Hospital.Controllers
                 Initials = doctor.Value.Initials,
                 SpecializationId = doctor.Value.SpecializationId
             };
-            return View(doc);
+            return Ok(doc);
         }
 
+        [HttpGet("getalldoctors")]
         public ActionResult<List<DoctorSearchView>> GetAllDoctors()
         {
             var list = _service.GetAllDoctors();
@@ -50,6 +54,7 @@ namespace Hospital.Controllers
             return Ok(doctorSearchViews);
         }
 
+        [HttpGet("deletedoctor")]
         public ActionResult<bool> DeleteDoctor(int id)
         {
             var doctor = _service.FindDoctor(id);
@@ -61,6 +66,7 @@ namespace Hospital.Controllers
             return Ok(res.Value);
         }
 
+        [HttpGet("createdoctor")]
         public ActionResult<DoctorSearchView> CreateDoctor(DoctorSearchView doctorSearchView)
         {
             if(doctorSearchView.Initials == string.Empty)

@@ -5,7 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Hospital.Controllers
 {
-    public class ScheduleController : Controller
+    [ApiController]
+    [Route("schedule")]
+    public class ScheduleController : ControllerBase
     {
         private readonly ScheduleService _service;
         public ScheduleController(ScheduleService service)
@@ -13,6 +15,7 @@ namespace Hospital.Controllers
             _service = service;
         }
 
+        [HttpGet("getschedule")]
         public ActionResult<ScheduleSearchView> GetDoctorScheduleByDate(DoctorSearchView model, DateTime date) 
         {
             Doctor doc = new Doctor(model.DoctorId, model.Initials, model.SpecializationId);
@@ -29,6 +32,7 @@ namespace Hospital.Controllers
             return Ok(view);
         }
 
+        [HttpGet("addschedule")]
         public ActionResult<ScheduleSearchView> AddSchedule(ScheduleSearchView model)
         {
             Schedule schedule = new Schedule(model.DoctorId, model.StartWorkTime, model.EndWorkTime);
@@ -40,6 +44,7 @@ namespace Hospital.Controllers
             return Ok(model);
         }
 
+        [HttpGet("editschedule")]
         public ActionResult<ScheduleSearchView> EditSchedule(ScheduleSearchView model)
         {
             Schedule schedule = new Schedule(model.DoctorId, model.StartWorkTime, model.EndWorkTime);

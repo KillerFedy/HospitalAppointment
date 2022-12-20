@@ -5,7 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Hospital.Controllers
 {
-    public class ReceptionController : Controller
+    [ApiController]
+    [Route("reception")]
+    public class ReceptionController : ControllerBase
     {
         private readonly ReceptionService _service;
         public ReceptionController(ReceptionService service)
@@ -13,6 +15,7 @@ namespace Hospital.Controllers
             _service = service;
         }
 
+        [HttpGet("saveappointment")]
         public ActionResult<ReceptionSearchView> SaveAppointment(DateTime start, DateTime end)
         {
             var res = _service.SaveAppointment(start, end);
@@ -30,6 +33,7 @@ namespace Hospital.Controllers
             return Ok(view);
         }
 
+        [HttpGet("saveappointmentdoctor")]
         public ActionResult<ReceptionSearchView> SaveAppointment(DateTime start, DateTime end, DoctorSearchView docView)
         {
             Doctor doctor = new Doctor(docView.DoctorId, docView.Initials, docView.SpecializationId);
@@ -48,6 +52,7 @@ namespace Hospital.Controllers
             return Ok(view);
         }
 
+        [HttpGet("freeappointmentlist")]
         public ActionResult<List<DateTime>> GetFreeAppointmentDateList(int specializationId)
         {
             var res = _service.GetFreeAppointmentDateList(specializationId);
