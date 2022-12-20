@@ -26,7 +26,7 @@ namespace DataBase.Repositories
             var appointmentForSpecialization = _context.Receptions.ToList();
             for (int i = 0; i < appointmentForSpecialization.Count; ++i)
             {
-                if (_context.Receptions.FirstOrDefault(a => doctor.Id == appointmentForSpecialization[i].DoctorId) != null)
+                if(appointmentForSpecialization[i].DoctorId == specializationId)
                 {
                     dateTimes.Add(appointmentForSpecialization[i].StartTime);
                 }
