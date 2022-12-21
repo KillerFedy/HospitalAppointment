@@ -47,6 +47,7 @@ namespace Domain.Services
             if (doctor.SpecializationId == -1)
                 return Result.Fail<Doctor>("No specialization");
 
+            _doctorRepository.CreateDoctor(doctor);
             return Result.Ok(doctor);
         }
     }

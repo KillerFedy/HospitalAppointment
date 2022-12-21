@@ -4,6 +4,7 @@ using Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,7 +26,7 @@ namespace DataBase.Repositories
             var appointmentForSpecialization = _context.Receptions.ToList();
             for (int i = 0; i < appointmentForSpecialization.Count; ++i)
             {
-                if (_context.Receptions.FirstOrDefault(a => doctor.Id == appointmentForSpecialization[i].DoctorId) != null)
+                if(appointmentForSpecialization[i].DoctorId == specializationId)
                 {
                     dateTimes.Add(appointmentForSpecialization[i].StartTime);
                 }
@@ -57,17 +58,38 @@ namespace DataBase.Repositories
                 DoctorId = doctor.DoctorId
             };
             _context.Receptions.Add(model);
+            _context.SaveChanges();
             return reception;
         }
 
         public Reception SaveAppointment(DateTime startTime, DateTime endTime)
         {
-            throw new NotImplementedException();
+            Reception reception = new Reception(startTime, endTime, 0, 0);
+            ReceptionModel model = new ReceptionModel
+            {
+                StartTime = reception.StartTime,
+                EndTime = reception.EndTime,
+                UserId = 0,
+                DoctorId = 0
+            };
+            _context.Receptions.Add(model);
+            _context.SaveChanges();
+            return reception;
         }
 
         public Reception SaveAppointment(DateTime startTime, DateTime endTime, Doctor doctor)
         {
-            throw new NotImplementedException();
+            Reception reception = new Reception(startTime, endTime, 0, doctor.DoctorId);
+            ReceptionModel model = new ReceptionModel
+            {
+                StartTime = reception.StartTime,
+                EndTime = reception.EndTime,
+                UserId = 0,
+                DoctorId = doctor.DoctorId
+            };
+            _context.Receptions.Add(model);
+            _context.SaveChanges();
+            return reception;
         }
     }
 }
